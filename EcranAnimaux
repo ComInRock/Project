@@ -1,0 +1,304 @@
+package fr.eni.App_Cliniqe.ihm;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+public class EcranAnimaux extends JFrame {
+
+	// Boutons
+	private JButton btnValider;
+	private JButton btnAnnuler;
+
+	//// Panel Client
+	// Client valeur
+	private JTextField txtclient;
+	
+	//// Ligne code
+	// Code libellé
+	private JLabel lblcode;
+	// Code valeur
+	private JLabel lblcodeValeur;
+
+	//// Designation animal
+	// Nom libellé
+	private JLabel lblnomAnimal;
+	// Nom valeur
+	private JTextField txtnomAnimal;
+	// Sexe valeur
+	private JComboBox<String> cbsexe;
+
+	//// Couleur animal
+	// Couleur libellé
+	private JLabel lblcouleur;
+	// Couleur valeur
+	private JTextField txtcouleur;
+
+	//// Espece animal
+	// Espece libellé
+	private JLabel lblespece;
+	// Espece valeur
+	private JComboBox<String> cbespece;
+	// Race libellé
+	private JLabel lblrace;
+	// Race valeur
+	private JComboBox<String> cbrace;
+
+	//// Tatouage
+	// Tatouage libellé
+	private JLabel lbltatouage;
+	// Tatouage valeur
+	private JTextField txttatouage;
+
+	public EcranAnimaux() {
+		this.setTitle("Animaux");
+		this.setSize(new Dimension(500, 500));
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		initIHM();
+
+	}
+
+	/**
+	 * Ajoute un composant graphique au panel
+	 * 
+	 * @param panel
+	 * @param component
+	 * @param gbc
+	 * @param y
+	 * @param x
+	 */
+	private void ajouterComposant(JPanel panel, JComponent component, GridBagConstraints gbc, int y, int x) {
+		ajouterComposant(panel, component, gbc, y, x, 1);
+	}
+
+	/**
+	 * Ajoute un composant graphique au panel
+	 * 
+	 * @param panel
+	 * @param component
+	 * @param gbc
+	 * @param y
+	 * @param x
+	 * @param width
+	 */
+	private void ajouterComposant(JPanel panel, JComponent component, GridBagConstraints gbc, int y, int x, int width) {
+		gbc.gridy = y;
+		gbc.gridx = x;
+		gbc.gridwidth = width;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		panel.add(component, gbc);
+	}
+
+	private void initIHM() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		// Boutons
+		int line = 0;
+		ajouterComposant(panel, getBtnValider(), gbc, line, 3);
+
+		ajouterComposant(panel, getBtnAnnuler(), gbc, line, 4);
+
+		line++;
+		//// Panel Client
+		// Client valeur
+		ajouterComposant(panel, getTxtclient(), gbc, line, 0, 5);
+
+		line++;
+		//// Ligne code
+		// Code libellé
+		ajouterComposant(panel, getLblcode(), gbc, line, 0);
+		// Code valeur
+		ajouterComposant(panel, getLblcodeValeur(), gbc, line, 1, 4);
+		//
+		line++;
+		//// Designation animal
+		// Nom libellé
+		ajouterComposant(panel, getLblnomAnimal(), gbc, line, 0);
+		// Nom valeur
+		ajouterComposant(panel, getTxtnomAnimal(), gbc, line, 1, 3);
+		// Sexe valeur
+		ajouterComposant(panel, getCbsexe(), gbc, line, 4);
+		//
+		line++;
+		//// Couleur animal
+		// Couleur libellé
+		ajouterComposant(panel, getLblcouleur(), gbc, line, 0);
+		// Couleur valeur
+		ajouterComposant(panel, getTxtcouleur(), gbc, line, 1, 3);
+		//
+		line++;
+		//// Espece animal
+		// Espece libellé
+		ajouterComposant(panel, getLblespece(), gbc, line, 0);
+		// Espece valeur
+		ajouterComposant(panel, getCbespece(), gbc, line, 1);
+		// Race libellé
+		ajouterComposant(panel, getLblrace(), gbc, line, 2);
+		// Race valeur
+		ajouterComposant(panel, getCbrace(), gbc, line, 3);
+		//
+		line++;
+		//// Tatouage
+		// Tatouage libellé
+		ajouterComposant(panel, getLbltatouage(), gbc, line, 0);
+		// Tatouage valeur
+		ajouterComposant(panel, getTxttatouage(), gbc, line, 1, 3);
+
+		this.setContentPane(panel);
+	}
+
+	public JButton getBtnValider() {
+		if (btnValider == null) {
+			btnValider = new JButton("Valider");
+			ImageIcon image = new ImageIcon(this.getClass().getResource("RessourceImage/BtnValider.png"));
+			btnValider.setIcon(image);
+			btnValider.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Validation");
+				}
+
+			});
+			}
+		return btnValider;
+		}
+	//}
+	public JButton getBtnAnnuler() {
+		if (btnAnnuler == null) {
+			btnAnnuler = new JButton("Annuler");
+			ImageIcon image = new ImageIcon(this.getClass().getResource("RessourceImage/BtnAnnuler.png"));
+			btnAnnuler.setIcon(image);
+			btnAnnuler.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Annulation");
+				}
+
+			});
+			}
+		return btnAnnuler;
+	}
+
+	public JTextField getTxtclient() {
+		if (txtclient == null) {
+			txtclient = new JTextField(50);
+			txtclient.setBorder(new TitledBorder("Client :"));
+		}
+		return txtclient;
+	}
+
+//
+
+	public JLabel getLblcode() {
+		if (lblcode == null) {
+			lblcode = new JLabel("Code");
+		}
+		return lblcode;
+	}
+
+	public JLabel getLblcodeValeur() {
+		if (lblcodeValeur == null) {
+			lblcodeValeur = new JLabel();
+		}
+		return lblcodeValeur;
+	}
+
+	public JLabel getLblnomAnimal() {
+		if (lblnomAnimal == null) {
+			lblnomAnimal = new JLabel("Nom");
+		}
+		return lblnomAnimal;
+	}
+
+	public JTextField getTxtnomAnimal() {
+		if (txtnomAnimal == null) {
+			txtnomAnimal = new JTextField(30);
+		}
+		return txtnomAnimal;
+	}
+
+	public JComboBox<String> getCbsexe() {
+		if (cbsexe == null) {
+			String[]sexe = { "Male", "Femelle","Hermaphrodite"};
+			cbsexe = new JComboBox<String>(sexe);
+		}
+		return cbsexe;
+	}
+
+	public JLabel getLblcouleur() {
+		if (lblcouleur == null) {
+			lblcouleur = new JLabel("Couleur");
+		}
+		return lblcouleur;
+	}
+
+	public JTextField getTxtcouleur() {
+		if (txtcouleur == null) {
+			txtcouleur = new JTextField(20);
+		}
+		return txtcouleur;
+	}
+
+	public JLabel getLblespece() {
+		if (lblespece == null) {
+			lblespece = new JLabel("Espèce");
+		}
+		return lblespece;
+	}
+
+	public JComboBox<String> getCbespece() {
+		if (cbespece == null) {
+			//List<String>  = new ArrayList <String>();
+			cbespece = new JComboBox<String>();
+		}
+		return cbespece;
+	}
+
+	public JLabel getLblrace() {
+		if (lblrace == null) {
+			lblrace = new JLabel("Race");
+		}
+		return lblrace;
+	}
+
+	public JComboBox<String> getCbrace() {
+		if (cbrace == null) {
+			cbrace = new JComboBox<String>();
+		}
+		return cbrace;
+	}
+
+	public JLabel getLbltatouage() {
+		if (lbltatouage == null) {
+			lbltatouage = new JLabel("Tatouage");
+		}
+		return lbltatouage;
+	}
+
+	public JTextField getTxttatouage() {
+		if (txttatouage == null) {
+			txttatouage = new JTextField(10);
+		}
+		return txttatouage;
+	}
+
+}
